@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Подвал интернета</title>
+  <style>
+    :root {
+      --bg: #101014;
+      --panel: #191920;
+      --panel2: #22222b;
+      --text: #eeeeF4;
+      --muted: #9292a2;
+      --accent: #a78bfa;
+      --border: #30303b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 15% 0%, #252039 0, transparent 34%), var(--bg);
+      color: var(--text);
+      font: 15px/1.6 Arial, sans-serif;
+    }
+    header {
+      padding: 28px 7vw 20px;
+      border-bottom: 1px solid var(--border);
+      background: #101014cc;
+    }
+    .brand { color: var(--accent); font-weight: 800; letter-spacing: 2px; font-size: 12px; }
+    h1 { margin: 8px 0 4px; font-size: clamp(28px, 5vw, 46px); }
+    header p { margin: 0; color: var(--muted); }
+    nav {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      padding: 14px 7vw;
+      border-bottom: 1px solid var(--border);
+      background: #15151b;
+      position: sticky; top: 0; z-index: 5;
+    }
+    nav button {
+      border: 1px solid var(--border); background: var(--panel);
+      color: var(--muted); padding: 9px 15px; border-radius: 8px;
+      cursor: pointer; font-weight: 700;
+    }
+    nav button.active, nav button:hover {
+      color: var(--text); border-color: var(--accent); background: #29233b;
+    }
+    main { width: min(920px, 86vw); margin: 34px auto 70px; }
+    .tab { display: none; animation: appear .2s ease; }
+    .tab.active { display: block; }
+    @keyframes appear { from {opacity:0; transform:translateY(5px)} to {opacity:1;transform:none} }
+    .card {
+      background: linear-gradient(145deg, var(--panel), #17171e);
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 22px; margin: 14px 0;
+      box-shadow: 0 12px 35px #0003;
+    }
+    h2 { margin: 0 0 12px; font-size: 25px; }
+    h3 { margin: 0 0 7px; }
+    .muted { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+    .stat { background: var(--panel2); border-radius: 10px; padding: 15px; }
+    .stat strong { display: block; font-size: 25px; color: var(--accent); }
+    .action {
+      display: inline-block; border: 0; border-radius: 8px;
+      background: var(--accent); color: #171322; padding: 10px 15px;
+      font-weight: 800; cursor: pointer; margin-top: 8px;
+    }
+    .action:hover { filter: brightness(1.12); }
+    input, textarea {
+      width: 100%; background: #111117; border: 1px solid var(--border);
+      color: var(--text); padding: 12px; border-radius: 8px; margin: 7px 0 12px;
+      font: inherit;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    .note { border-left: 3px solid var(--accent); padding: 10px 14px; background: #242033; border-radius: 0 8px 8px 0; }
+    footer { border-top: 1px solid var(--border); padding: 22px 7vw; color: var(--muted); text-align: center; }
+    .tiny { font-size: 12px; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">НЕИЗВЕСТНЫЙ ПРОЕКТ №404</div>
+    <h1>Подвал интернета</h1>
+    <p>Сайт сомнительной полезности. Зато бесплатный.</p>
+  </header>
+
+  <nav aria-label="Основная навигация">
+    <button class="active" data-tab="home">Главная</button>
+    <button data-tab="about">О проекте</button>
+    <button data-tab="tools">Полезное</button>
+    <button data-tab="guestbook">Гостевая</button>
+  </nav>
+
+  <main>
+    <section id="home" class="tab active">
+      <div class="card">
+        <h2>Добро пожаловать 👾</h2>
+        <p>Ты каким-то образом нашёл этот уголок интернета. Здесь нет великих смыслов, зато есть вкладки, кнопки и подозрительно много свободного времени.</p>
+        <button class="action" id="randomBtn">Получить случайную мысль</button>
+        <p class="note" id="randomText">Нажми кнопку. Возможно, станет интереснее.</p>
+      </div>
+      <div class="grid">
+        <div class="stat"><strong>404</strong><span>смысла не найдено</span></div>
+        <div class="stat"><strong>0 ₽</strong><span>бюджет проекта</span></div>
+        <div class="stat"><strong>∞</strong><span>амбиции автора</span></div>
+      </div>
+    </section>
+
+    <section id="about" class="tab">
+      <div class="card">
+        <h2>О проекте</h2>
+        <p>«Подвал интернета» — демонстрационный сайт, сделанный в одном HTML-файле. Он специально выглядит немного странно, но умеет переключать вкладки и реагировать на нажатия.</p>
+        <p class="muted">Никаких аккаунтов, серверов и скрытой магии. Просто HTML, CSS и JavaScript.</p>
+      </div>
+      <div class="card">
+        <h3>Миссия</h3>
+        <p>Занимать место на диске и доказывать, что даже самый скромный сайт может иметь тёмную тему.</p>
+      </div>
+    </section>
+
+    <section id="tools" class="tab">
+      <div class="card">
+        <h2>Полезная кнопка</h2>
+        <p>Нажми и получи число от 1 до 100. Наука пока не объяснила зачем.</p>
+        <div class="stat"><strong id="number">—</strong><span>твоё случайное число</span></div>
+        <button class="action" id="numberBtn">Сгенерировать</button>
+      </div>
+      <div class="card">
+        <h3>Мини-чеклист</h3>
+        <label><input type="checkbox"> Выпить воды</label><br>
+        <label><input type="checkbox"> Размять спину</label><br>
+        <label><input type="checkbox"> Сделать что-нибудь полезное</label>
+      </div>
+    </section>
+
+    <section id="guestbook" class="tab">
+      <div class="card">
+        <h2>Гостевая книга</h2>
+        <p class="muted">Оставь сообщение. Оно появится только в этом окне браузера и не отправится на сервер.</p>
+        <label for="guestName">Твоё имя</label>
+        <input id="guestName" maxlength="30" placeholder="Например, Аноним">
+        <label for="guestMessage">Сообщение</label>
+        <textarea id="guestMessage" maxlength="300" placeholder="Напиши что-нибудь..."></textarea>
+        <button class="action" id="sendBtn">Добавить запись</button>
+        <div id="messages"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Сделано без бюджета, но с надеждой. © 2026
+    <div class="tiny">Учебный демонстрационный сайт</div>
+  </footer>
+
+  <script>
+    const tabs = document.querySelectorAll('.tab');
+    const navButtons = document.querySelectorAll('nav button');
+    navButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        navButtons.forEach(item => item.classList.remove('active'));
+        tabs.forEach(tab => tab.classList.remove('active'));
+        button.classList.add('active');
+        document.getElementById(button.dataset.tab).classList.add('active');
+      });
+    });
+
+    const thoughts = [
+      'Если долго смотреть в монитор, монитор тоже смотрит в тебя.',
+      'У этого сайта есть вкладки. У некоторых людей и этого нет.',
+      'Большие дела начинаются с маленького файла index.html.',
+      'Сегодня отличный день, чтобы не усложнять простые вещи.',
+      'Ошибка 404: мотивация временно не найдена.'
+    ];
+    document.getElementById('randomBtn').addEventListener('click', () => {
+      document.getElementById('randomText').textContent =
+        thoughts[Math.floor(Math.random() * thoughts.length)];
+    });
+
+    document.getElementById('numberBtn').addEventListener('click', () => {
+      document.getElementById('number').textContent = Math.floor(Math.random() * 100) + 1;
+    });
+
+    document.getElementById('sendBtn').addEventListener('click', () => {
+      const name = document.getElementById('guestName').value.trim() || 'Аноним';
+      const message = document.getElementById('guestMessage').value.trim();
+      if (!message) {
+        alert('Сначала напиши сообщение.');
+        return;
+      }
+      const card = document.createElement('div');
+      card.className = 'stat';
+      const title = document.createElement('strong');
+      title.textContent = name;
+      const body = document.createElement('p');
+      body.textContent = message;
+      card.append(title, body);
+      document.getElementById('messages').prepend(card);
+      document.getElementById('guestMessage').value = '';
+    });
+  </script>
+</body>
+</html>
